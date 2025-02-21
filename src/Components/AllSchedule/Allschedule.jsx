@@ -37,6 +37,9 @@ const Allschedule = () => {
    }
     return (
         <div>
+          <div className='flex justify-center items-center'>
+         <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+          </div>
           <div className="overflow-x-auto">
   <table className="table table-zebra">
     {/* head */}
