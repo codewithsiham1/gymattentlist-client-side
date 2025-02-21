@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Allschedule = () => {
     const shceduledata=useLoaderData()
-    const [schedule,setschedule]=useState(shceduledata)
+    const [schedule,setschedule]=useState(shceduledata||[])
+    const [search,setsearch]=useState("")
+    console.log(search)
+   useEffect(()=>{
+    fetch(`http://localhost:5000/schedules?searchParams=${search}`)
+    .then(res=>res.json())
+    .then(data=>{
+      setschedule(data)
+    })
+   },[search])
    const handledelte=(_id)=>{
    fetch(`http://localhost:5000/schedules/${_id}`,{
     method:"DELETE"
@@ -38,7 +47,7 @@ const Allschedule = () => {
     return (
         <div>
           <div className='flex justify-center items-center'>
-         <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+         <input type="search" value={search}  onChange={(e)=>setsearch(e.target.value)} placeholder="Search" className="input input-bordered w-full max-w-xs" />
           </div>
           <div className="overflow-x-auto">
   <table className="table table-zebra">

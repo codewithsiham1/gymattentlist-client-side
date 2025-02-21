@@ -6,6 +6,7 @@ import Addscheduke from "../Components/Add Schedule/Addscheduke";
 import Allschedule from "../Components/AllSchedule/Allschedule";
 import Signout from "../Components/Signout/Signout";
 import Updateschedule from "../Components/Updateschedule/Updateschedule";
+import Signin from "../Components/SignIn/Signin";
 
 const router=createBrowserRouter([
    {
@@ -25,6 +26,10 @@ const router=createBrowserRouter([
             path:'/allschedule',
             element:<Allschedule></Allschedule>,
             loader:()=>fetch('http://localhost:5000/schedules')
+        },
+        {
+       path:"/signin",
+       element:<Signin></Signin>
         },
         {
             path:'/signout',
